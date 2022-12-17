@@ -12,7 +12,7 @@
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+        tools:context=".presentation.MainActivity">
 
         <fragment
             android:id="@+id/navHost"
@@ -20,53 +20,21 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottomNav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/main_nav_graph"
             tools:ignore="FragmentTagUsage" />
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/cord"
-            android:background="@color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="98dp">
-
-            <com.google.android.material.bottomappbar.BottomAppBar
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNav"
+                app:menu="@menu/home_menu"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:fabCradleMargin="12dp"
-                app:fabCradleVerticalOffset="10dp"
-                android:layout_gravity="bottom"
-                app:fabCradleRoundedCornerRadius="20dp">
-
-                <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/bottomNav"
-                    app:menu="@menu/home_menu"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="16sp"
-                    android:background="@android:color/transparent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.bottomappbar.BottomAppBar>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btnStartRun"
-                android:src="@drawable/ic_home_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tint="@android:color/white"
-                app:layout_anchor="@id/bottomNav"
-                android:contentDescription="@null" />
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                android:layout_height="wrap_content" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

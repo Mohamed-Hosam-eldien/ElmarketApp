@@ -1,4 +1,4 @@
-package com.codingtester.elmarket.data.repos
+package com.codingtester.elmarket.data.repository
 
 import com.codingtester.elmarket.data.pojo.ProductsResponse
 import retrofit2.Response

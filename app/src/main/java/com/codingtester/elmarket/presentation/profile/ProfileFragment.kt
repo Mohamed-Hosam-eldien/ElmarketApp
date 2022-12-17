@@ -1,4 +1,4 @@
-package com.codingtester.elmarket.ui.profile
+package com.codingtester.elmarket.presentation.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
