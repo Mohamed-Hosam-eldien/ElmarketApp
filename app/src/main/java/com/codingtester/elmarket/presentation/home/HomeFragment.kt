@@ -6,10 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.codingtester.elmarket.databinding.FragmentHomeBinding
+import com.codingtester.elmarket.presentation.home.adapter.ProductsAdapter
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -19,10 +25,10 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewPager: ViewPager
     private lateinit var dots: DotsIndicator
-    private lateinit var sliderAdapter: SliderAdapter
     private lateinit var binding: FragmentHomeBinding
 
     private val homeViewModel: HomeViewModel by viewModels()
+    private val productAdapter by lazy { ProductsAdapter() }
 
 
     override fun onCreateView(
@@ -30,30 +36,31 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initAdsSlider()
+        initRecycler()
         getAllProduct()
+    }
+
+    private fun initRecycler() = binding.recyclerProducts.apply {
+        adapter = productAdapter
+        layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
     }
 
     private fun initAdsSlider(){
         viewPager = binding.viewPagerAds
         dots = binding.dotsIndicator
-        sliderAdapter = SliderAdapter(requireContext())
-
-        viewPager.adapter = sliderAdapter
+        viewPager.adapter = SliderAdapter(requireContext())
         dots.attachTo(viewPager)
     }
 
-    private fun getAllProduct() {
+    private fun getAllProduct() = lifecycleScope.launchWhenStarted {
         homeViewModel.getAllProducts()
-        lifecycleScope.launchWhenStarted{
-            homeViewModel.productList.collectLatest {
-                Log.e("TAG", "products 0 list: --> $it")
-            }
+        homeViewModel.productList.collectLatest { products ->
+            productAdapter.setProductList(products)
         }
     }
 
