@@ -1,5 +1,7 @@
 package com.codingtester.elmarket.di
 
+import com.codingtester.elmarket.data.local.ILocalDataSource
+import com.codingtester.elmarket.data.local.LocalDataSource
 import com.codingtester.elmarket.data.network.IRemoteDataSource
 import com.codingtester.elmarket.data.network.RemoteDataSource
 import com.codingtester.elmarket.data.repository.IProductRepo
@@ -19,10 +21,13 @@ interface DataSourceModule {
         productRepo: ProductRepo
     ): IProductRepo
 
-
     @Binds
     fun provideRemoteDataSource(
-        localRemote: RemoteDataSource
+        remoteDS: RemoteDataSource
     ): IRemoteDataSource
 
+    @Binds
+    fun provideLocalDataSource(
+        localDS: LocalDataSource
+    ): ILocalDataSource
 }

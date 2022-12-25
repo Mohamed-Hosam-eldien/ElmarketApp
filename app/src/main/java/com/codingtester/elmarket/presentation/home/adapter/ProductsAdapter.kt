@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -37,6 +38,11 @@ class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
         holder.imgFav.setOnClickListener{
 
         }
+
+        holder.productCard.setOnClickListener{
+
+        }
+
     }
 
     override fun getItemCount() = products.size
@@ -56,6 +62,7 @@ class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
         val productPrice:TextView = itemView.findViewById(R.id.txtProductPrice)
         val productRate:TextView = itemView.findViewById(R.id.txtProductRate)
         val imgFav:ImageView = itemView.findViewById(R.id.imgFav)
+        val productCard:CardView = itemView.findViewById(R.id.productCard)
     }
 
 }

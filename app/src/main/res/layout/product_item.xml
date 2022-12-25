@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/productCard"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="12dp"
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="sans-serif-condensed-medium"
             android:textStyle="bold"
             android:text="67 $"
             android:textColor="@color/lightBlack"
@@ -53,11 +54,14 @@
         <ImageView
             android:id="@+id/imgFav"
             android:layout_margin="8dp"
+            android:padding="4dp"
+            android:background="@drawable/fav_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_favorite_off_24"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@null" />
 
         <FrameLayout
             android:id="@+id/brandLayouot"
@@ -114,7 +118,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:src="@drawable/ic_star_24"
                 android:layout_width="16sp"
-                android:layout_height="16sp"/>
+                android:layout_height="16sp"
+                android:contentDescription="@null" />
 
         </LinearLayout>
 
