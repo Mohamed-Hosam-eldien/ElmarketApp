@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/shopFragment"
-        android:name="com.codingtester.elmarket.presentation.home.HomeFragment"
+        android:name="com.codingtester.elmarket.presentation.home.view.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home"/>
     <fragment

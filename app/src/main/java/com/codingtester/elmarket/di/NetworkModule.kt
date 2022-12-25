@@ -1,7 +1,6 @@
 package com.codingtester.elmarket.di
 
 import com.codingtester.elmarket.data.network.ProductsService
-import com.codingtester.elmarket.utils.Constants.BASE_URL
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -11,6 +10,8 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
+const val BASE_URL = "https://dummyjson.com/"
 
 @Module
 @InstallIn(SingletonComponent::class)
