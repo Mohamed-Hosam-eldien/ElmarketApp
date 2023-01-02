@@ -8,9 +8,13 @@
 
     <fragment
         android:id="@+id/shopFragment"
-        android:name="com.codingtester.elmarket.presentation.home.view.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home"/>
+        android:name="com.codingtester.elmarket.presentation.shop.view.ShopFragment"
+        android:label="Shop"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_shopFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.codingtester.elmarket.presentation.cart.CartFragment"
@@ -31,5 +35,13 @@
         android:name="com.codingtester.elmarket.presentation.setting.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.codingtester.elmarket.presentation.productDetails.ProductDetailsFragment"
+        android:label="Details" >
+        <argument
+            android:name="productDetails"
+            app:argType="com.codingtester.elmarket.data.pojo.Product" />
+    </fragment>
 
 </navigation>

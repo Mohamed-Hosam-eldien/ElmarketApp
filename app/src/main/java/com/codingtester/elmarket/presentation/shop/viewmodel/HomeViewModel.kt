@@ -1,4 +1,4 @@
-package com.codingtester.elmarket.presentation.home.viewmodel
+package com.codingtester.elmarket.presentation.shop.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

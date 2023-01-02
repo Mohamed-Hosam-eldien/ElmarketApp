@@ -1,4 +1,4 @@
-package com.codingtester.elmarket.presentation.home.adapter
+package com.codingtester.elmarket.presentation.shop.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.codingtester.elmarket.data.pojo.Product

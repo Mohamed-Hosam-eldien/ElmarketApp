@@ -1,4 +1,4 @@
-package com.codingtester.elmarket.presentation.home.adapter
+package com.codingtester.elmarket.presentation.shop.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,11 +9,9 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.codingtester.elmarket.R
 
-class SliderAdapter(private var context: Context): PagerAdapter() {
+class SliderAdapter(private var context: Context, private var images: List<Any>): PagerAdapter() {
 
     private lateinit var layoutInflater:LayoutInflater
-    private val images = listOf( R.drawable.ads1, R.drawable.ads2, R.drawable.ads3,
-        R.drawable.ads4, R.drawable.ads5, R.drawable.ads6)
 
     override fun getCount(): Int {
         return images.size
@@ -27,7 +25,7 @@ class SliderAdapter(private var context: Context): PagerAdapter() {
         layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view:View = layoutInflater.inflate(R.layout.slide_item,null)
         val imageView:ImageView = view.findViewById(R.id.slideImage)
-        imageView.setImageResource(images[position])
+        imageView.setImageResource(images[position] as Int)
         val viewPager: ViewPager = container as ViewPager
         viewPager.addView(view, 0)
         return view

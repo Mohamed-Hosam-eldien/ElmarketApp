@@ -1,4 +1,4 @@
-package com.codingtester.elmarket.presentation.home.adapter
+package com.codingtester.elmarket.presentation.shop.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +12,9 @@ import com.bumptech.glide.Glide
 import com.codingtester.elmarket.R
 import com.codingtester.elmarket.data.pojo.Product
 
-class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+class ProductsAdapter(
+    private val productClickListener: ProductClickListener
+): RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
     private val products = arrayListOf<Product>()
 
@@ -40,7 +42,7 @@ class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
         }
 
         holder.productCard.setOnClickListener{
-
+            productClickListener.clickOnProduct(currentProduct)
         }
 
     }

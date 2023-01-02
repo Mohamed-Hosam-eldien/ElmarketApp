@@ -1,4 +1,4 @@
-package com.codingtester.elmarket.presentation.home.view
+package com.codingtester.elmarket.presentation.shop.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,26 +7,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewpager.widget.ViewPager
+import com.codingtester.elmarket.R
+import com.codingtester.elmarket.data.pojo.Product
 import com.codingtester.elmarket.databinding.FragmentHomeBinding
-import com.codingtester.elmarket.presentation.home.viewmodel.HomeViewModel
-import com.codingtester.elmarket.presentation.home.adapter.ProductsAdapter
-import com.codingtester.elmarket.presentation.home.adapter.SliderAdapter
+import com.codingtester.elmarket.presentation.shop.adapter.ProductClickListener
+import com.codingtester.elmarket.presentation.shop.viewmodel.HomeViewModel
+import com.codingtester.elmarket.presentation.shop.adapter.ProductsAdapter
+import com.codingtester.elmarket.presentation.shop.adapter.SliderAdapter
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class ShopFragment : Fragment(), ProductClickListener {
 
     private lateinit var viewPager: ViewPager
     private lateinit var dots: DotsIndicator
     private lateinit var binding: FragmentHomeBinding
 
     private val homeViewModel: HomeViewModel by viewModels()
-    private val productAdapter by lazy { ProductsAdapter() }
+    private val productAdapter by lazy { ProductsAdapter(this) }
 
 
     override fun onCreateView(
@@ -51,7 +55,11 @@ class HomeFragment : Fragment() {
     private fun initAdsSlider(){
         viewPager = binding.viewPagerAds
         dots = binding.dotsIndicator
-        viewPager.adapter = SliderAdapter(requireContext())
+
+        val images = listOf( R.drawable.ads1, R.drawable.ads2, R.drawable.ads3,
+        R.drawable.ads4, R.drawable.ads5, R.drawable.ads6)
+
+        viewPager.adapter = SliderAdapter(requireContext(), images.toList())
         dots.attachTo(viewPager)
     }
 
@@ -60,6 +68,11 @@ class HomeFragment : Fragment() {
         homeViewModel.productList.collectLatest { products ->
             productAdapter.setProductList(products)
         }
+    }
+
+    override fun clickOnProduct(product: Product) {
+        val action = ShopFragmentDirections.actionShopFragmentToProductDetailsFragment(product)
+        findNavController().navigate(action)
     }
 
 }

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/txtProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="infinx oppo x ray product"
+            android:textColor="@color/lightBlack"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dots_indicator" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerAds"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="@color/light_gray"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+            android:id="@+id/dots_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/viewPagerAds"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:dotsColor="#6FBFFF"
+            app:dotsCornerRadius="8dp"
+            app:dotsSize="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+            app:dotsSpacing="6dp"
+            app:dotsWidthFactor="2.5"
+            app:progressMode="true"
+            app:selectedDotColor="#0071CC" />
+
+        <LinearLayout
+            android:id="@+id/ratingLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/rate_background"
+            android:layout_marginTop="8sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/brandLayouot">
+
+            <TextView
+                android:id="@+id/txtProductRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"
+                android:text="4.3"
+                android:textColor="@color/white"
+                android:layout_marginEnd="2sp"
+                app:layout_constraintEnd_toStartOf="@id/imgStar"
+                app:layout_constraintTop_toBottomOf="@id/txtProductPrice" />
+
+            <ImageView
+                android:id="@+id/imgStar"
+                app:layout_constraintTop_toBottomOf="@id/txtProductPrice"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/ic_star_24"
+                android:layout_width="16sp"
+                android:layout_height="16sp"
+                android:contentDescription="@null" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtRatedCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="8dp"
+            android:textSize="12sp"
+            android:text="122"
+            app:layout_constraintStart_toEndOf="@id/ratingLayout"
+            app:layout_constraintTop_toTopOf="@id/ratingLayout" />
+
+        <ImageView
+            android:id="@+id/imgPerson"
+            app:layout_constraintTop_toTopOf="@+id/txtRatedCount"
+            app:layout_constraintStart_toEndOf="@id/txtRatedCount"
+            android:src="@drawable/ic_person_24"
+            android:layout_width="16sp"
+            android:layout_height="16sp"/>
+
+        <FrameLayout
+            android:id="@+id/brandLayouot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="12sp"
+            android:background="@drawable/brand_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtProductName">
+
+            <TextView
+                android:id="@+id/txtProductBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="Apple hjgjh"
+                android:maxLines="1"
+                android:textColor="@color/lightBlack"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtProductPrice" />
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

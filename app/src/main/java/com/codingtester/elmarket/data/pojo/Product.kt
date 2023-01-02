@@ -1,9 +1,12 @@
 package com.codingtester.elmarket.data.pojo
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 @Entity
+@Parcelize
 data class Product(
     @PrimaryKey
     val id: Int,
@@ -17,4 +20,4 @@ data class Product(
     val stock: Int,
     val thumbnail: String,
     val title: String
-)
+): Parcelable
