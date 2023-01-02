@@ -1,4 +1,4 @@
-package com.codingtester.elmarket.presentation.shop.adapter
+package com.codingtester.elmarket.presentation.productDetails
 
 import android.content.Context
 import android.util.Log
@@ -11,11 +11,9 @@ import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.codingtester.elmarket.R
 
-class SliderAdapter(private var context: Context): PagerAdapter() {
+class ProductImagesAdapter(private var context: Context,private val images:List<String>): PagerAdapter() {
 
     private lateinit var layoutInflater:LayoutInflater
-    private val images = listOf( R.drawable.ads1, R.drawable.ads2, R.drawable.ads3,
-        R.drawable.ads4, R.drawable.ads5, R.drawable.ads6)
 
 
     override fun getCount(): Int {
@@ -28,10 +26,10 @@ class SliderAdapter(private var context: Context): PagerAdapter() {
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view:View = layoutInflater.inflate(R.layout.slide_item,null)
+        val view:View = layoutInflater.inflate(R.layout.slide_product_item,null)
 
-        val imageView:ImageView = view.findViewById(R.id.slideImage)
-        imageView.setImageResource(images[position])
+        val imageView:ImageView = view.findViewById(R.id.slideImageProduct)
+        Glide.with(context).load(images[position]).into(imageView)
 
         val viewPager: ViewPager = container as ViewPager
         viewPager.addView(view, 0)

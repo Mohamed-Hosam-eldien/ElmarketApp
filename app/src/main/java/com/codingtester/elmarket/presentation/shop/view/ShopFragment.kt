@@ -56,10 +56,7 @@ class ShopFragment : Fragment(), ProductClickListener {
         viewPager = binding.viewPagerAds
         dots = binding.dotsIndicator
 
-        val images = listOf( R.drawable.ads1, R.drawable.ads2, R.drawable.ads3,
-        R.drawable.ads4, R.drawable.ads5, R.drawable.ads6)
-
-        viewPager.adapter = SliderAdapter(requireContext(), images.toList())
+        viewPager.adapter = SliderAdapter(requireContext())
         dots.attachTo(viewPager)
     }
 

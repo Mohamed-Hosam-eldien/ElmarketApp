@@ -28,8 +28,8 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerAds"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:background="@color/light_gray"
+            android:layout_height="360dp"
+            android:background="@color/white"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
