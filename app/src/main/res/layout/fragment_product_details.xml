@@ -20,34 +20,28 @@
             android:textColor="@color/lightBlack"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dots_indicator" />
+            app:layout_constraintTop_toBottomOf="@id/image_slider" />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPagerAds"
-            android:layout_width="match_parent"
-            android:layout_height="360dp"
-            android:background="@color/white"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-            android:id="@+id/dots_indicator"
+        <TextView
+            android:id="@+id/txtPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/viewPagerAds"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:dotsColor="#6FBFFF"
-            app:dotsCornerRadius="8dp"
-            app:dotsSize="10dp"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="center"
-            app:dotsSpacing="6dp"
-            app:dotsWidthFactor="2.5"
-            app:progressMode="true"
-            app:selectedDotColor="#0071CC" />
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-condensed-medium"
+            app:layout_constraintTop_toBottomOf="@id/txtProductName"
+            app:layout_constraintStart_toStartOf="@id/txtProductName"/>
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            app:iss_auto_cycle="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:iss_period="1000"
+            app:iss_delay="0"/>
 
         <LinearLayout
             android:id="@+id/ratingLayout"
@@ -105,11 +99,11 @@
             android:id="@+id/brandLayouot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:textSize="12sp"
             android:background="@drawable/brand_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtProductName">
+            app:layout_constraintTop_toBottomOf="@id/txtPrice">
 
             <TextView
                 android:id="@+id/txtProductBrand"
@@ -124,6 +118,15 @@
                 app:layout_constraintTop_toBottomOf="@id/txtProductPrice" />
 
         </FrameLayout>
+
+        <TextView
+            android:id="@+id/txtDetails"
+            android:layout_marginTop="12sp"
+            android:fontFamily="sans-serif"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/ratingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,16 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import androidx.viewpager.widget.ViewPager
 import com.codingtester.elmarket.data.pojo.Product
 import com.codingtester.elmarket.databinding.FragmentProductDetailsBinding
-import com.codingtester.elmarket.presentation.shop.adapter.SliderAdapter
-import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+import com.denzcoskun.imageslider.models.SlideModel
+
 
 class ProductDetailsFragment : Fragment() {
-
-    private lateinit var viewPager: ViewPager
-    private lateinit var dots: DotsIndicator
 
     private lateinit var binding: FragmentProductDetailsBinding
     private val saveArgs = navArgs<ProductDetailsFragmentArgs>()
@@ -38,13 +34,19 @@ class ProductDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initProductImagesSlider()
         binding.txtProductName.text = product.title
+        binding.txtPrice.text = product.price.toString().plus(" $")
+        binding.txtDetails.text = product.description
+        binding.txtProductBrand.text = product.brand
+        binding.txtProductRate.text = product.rating.toString()
+        binding.txtRatedCount.text = product.ratingCount.toString()
     }
 
     private fun initProductImagesSlider(){
-        viewPager = binding.viewPagerAds
-        dots = binding.dotsIndicator
-        viewPager.adapter = ProductImagesAdapter(requireContext(), product.images)
-        dots.attachTo(viewPager)
+        val list = arrayListOf<SlideModel>()
+        product.images.forEach{
+            list.add(SlideModel(it))
+        }
+        binding.imageSlider.setImageList(list)
     }
 
 }
