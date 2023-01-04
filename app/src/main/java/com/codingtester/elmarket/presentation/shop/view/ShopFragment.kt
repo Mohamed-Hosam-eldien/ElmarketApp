@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewpager.widget.ViewPager
-import com.codingtester.elmarket.R
 import com.codingtester.elmarket.data.pojo.Product
 import com.codingtester.elmarket.databinding.FragmentHomeBinding
 import com.codingtester.elmarket.presentation.shop.adapter.ProductClickListener
@@ -20,7 +19,10 @@ import com.codingtester.elmarket.presentation.shop.adapter.ProductsAdapter
 import com.codingtester.elmarket.presentation.shop.adapter.SliderAdapter
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ShopFragment : Fragment(), ProductClickListener {
@@ -60,7 +62,7 @@ class ShopFragment : Fragment(), ProductClickListener {
         dots.attachTo(viewPager)
     }
 
-    private fun getAllProduct() = lifecycleScope.launchWhenStarted {
+    private fun getAllProduct() = lifecycleScope.launch {
         homeViewModel.getAllProducts()
         homeViewModel.productList.collectLatest { products ->
             productAdapter.setProductList(products)
@@ -70,6 +72,10 @@ class ShopFragment : Fragment(), ProductClickListener {
     override fun clickOnProduct(product: Product) {
         val action = ShopFragmentDirections.actionShopFragmentToProductDetailsFragment(product)
         findNavController().navigate(action)
+    }
+
+    override fun clickOnProductFav(product: Product) {
+        homeViewModel.insertProductFav(product)
     }
 
 }

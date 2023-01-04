@@ -1,15 +1,19 @@
 package com.codingtester.elmarket.di
 
+import android.content.Context
 import com.codingtester.elmarket.data.network.ProductsService
+import com.codingtester.elmarket.utils.Constants
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
+
 
 const val BASE_URL = "https://dummyjson.com/"
 
@@ -18,10 +22,22 @@ const val BASE_URL = "https://dummyjson.com/"
 object NetworkModule {
 
     @Provides
-    fun provideHttpClient(): OkHttpClient {
+    fun provideHttpClient(@ApplicationContext context: Context): OkHttpClient {
+        val cacheSize = (5 * 1024 * 1024).toLong()
+        val myCache = Cache(context.cacheDir, cacheSize)
+
         return OkHttpClient.Builder()
-            .readTimeout(15, TimeUnit.SECONDS)
-            .connectTimeout(15, TimeUnit.SECONDS)
+            .cache(myCache)
+            .addInterceptor { chain ->
+                var request = chain.request()
+                request = if (Constants.isNetworkAvailable(context))
+                    request.newBuilder().header("Cache-Control", "public, max-age=" + 5).build()
+                else
+                    request.newBuilder().header("Cache-Control",
+                        "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7)
+                        .build()
+                chain.proceed(request)
+            }
             .build()
     }
 

@@ -6,11 +6,15 @@ import retrofit2.Response
 
 interface IProductRepo {
 
-    suspend fun getAllRemoteProducts(): Response<ProductsResponse>
+    suspend fun getAllRemoteProducts(): List<Product>?
 
     suspend fun getAllCashingProducts(): List<Product>
 
-    suspend fun insertProductsToCaching(products:List<Product>)
+    suspend fun insertProductsToCaching(product:Product)
 
     suspend fun clearAllProductsFromCaching()
+
+    suspend fun isProductFav(id : Int) : Boolean
+
+    suspend fun updateProductFavorite(isFav:Boolean, id:Int)
 }

@@ -37,8 +37,12 @@ class ProductsAdapter(
             .load(currentProduct.thumbnail)
             .into(holder.productImage)
 
-        holder.imgFav.setOnClickListener{
+        if(currentProduct.isFavorite) {
+            holder.imgFav.setImageResource(R.drawable.ic_favorite_color_24)
+        }
 
+        holder.imgFav.setOnClickListener{
+            productClickListener.clickOnProductFav(currentProduct)
         }
 
         holder.productCard.setOnClickListener{

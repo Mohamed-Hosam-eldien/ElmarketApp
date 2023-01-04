@@ -7,8 +7,8 @@ class LocalDataSource @Inject constructor(
     private val productsDao: ProductDao
 ): ILocalDataSource {
 
-    override suspend  fun insertProductsToCaching(products: List<Product>) {
-        productsDao.insertProducts(products)
+    override suspend  fun insertProductsToCaching(product:Product) {
+        productsDao.insertProducts(product)
     }
 
     override suspend  fun getAllProductsFromCaching(): List<Product> {
@@ -17,5 +17,13 @@ class LocalDataSource @Inject constructor(
 
     override suspend fun clearProductsFromCaching() {
         productsDao.clearProductsList()
+    }
+
+    override suspend fun isProductFav(id: Int): Boolean {
+        return productsDao.isProductFav(id)
+    }
+
+    override suspend fun updateProductFavorite(isFav: Boolean, id: Int) {
+        productsDao.updateProductFavorite(isFav, id)
     }
 }

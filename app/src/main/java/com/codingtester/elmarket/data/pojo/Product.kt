@@ -21,5 +21,6 @@ data class Product(
     @SerializedName("stock")
     val ratingCount: Int,
     val thumbnail: String,
-    val title: String
+    val title: String,
+    var isFavorite: Boolean = false
 ): Parcelable

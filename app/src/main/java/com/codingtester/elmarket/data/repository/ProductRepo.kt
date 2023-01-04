@@ -12,21 +12,27 @@ class ProductRepo @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : IProductRepo {
 
-    override suspend fun getAllRemoteProducts(): Response<ProductsResponse> {
-        return remoteDataSource.getProductsList()
+    override suspend fun getAllRemoteProducts(): List<Product>? {
+        return remoteDataSource.getProductsList().body()?.products
     }
 
     override suspend fun getAllCashingProducts(): List<Product> {
         return localDataSource.getAllProductsFromCaching()
     }
 
-    override suspend fun insertProductsToCaching(products: List<Product>) {
-        localDataSource.insertProductsToCaching(products)
+    override suspend fun insertProductsToCaching(product:Product) {
+        localDataSource.insertProductsToCaching(product)
     }
 
     override suspend fun clearAllProductsFromCaching() {
         localDataSource.clearProductsFromCaching()
     }
 
+    override suspend fun isProductFav(id: Int): Boolean {
+        return localDataSource.isProductFav(id)
+    }
 
+    override suspend fun updateProductFavorite(isFav: Boolean, id: Int) {
+        localDataSource.updateProductFavorite(isFav, id)
+    }
 }
